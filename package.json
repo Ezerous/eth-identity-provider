@@ -1,0 +1,13 @@
+{
+  "name": "@ezerous/eth-identity-provider",
+  "version": "0.1.0",
+  "description": "An Ethereum orbit-db-identity-provider.",
+  "license": "MIT",
+  "author": "Ezerous <ezerous@gmail.com>",
+  "main": "src/index.js",
+  "repository": "github:Ezerous/breeze",
+  "dependencies": {
+    "level": "~6.0.1",
+    "orbit-db-identity-provider": "~0.3.1"
+  }
+}

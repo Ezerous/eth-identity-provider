@@ -1,0 +1,9 @@
+# Jetbrains
+.idea
+
+# Git
+.gitattributes
+
+# Package managers
+yarn.lock
+*.tgz

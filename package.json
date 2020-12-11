@@ -1,6 +1,6 @@
 {
   "name": "@ezerous/eth-identity-provider",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An Ethereum orbit-db-identity-provider.",
   "license": "MIT",
   "author": "Ezerous <ezerous@gmail.com>",

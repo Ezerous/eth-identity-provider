@@ -51,7 +51,7 @@ class EthereumContractIdentityProvider extends IdentityProvider {
   }
 
   async signIdentity(data) {
-    if (process.env.NODE_ENV === 'development') { // Don't sign repeatedly while in development
+    if (EthereumContractIdentityProvider.storeAuthDataLocally) {
       console.debug(`${LOGGING_PREFIX}Attempting to find stored Orbit identity data...`);
       const signaturePubKey = await getIdentitySignaturePubKey(data);
       if (signaturePubKey) {
@@ -74,7 +74,7 @@ class EthereumContractIdentityProvider extends IdentityProvider {
   async doSignIdentity(data) {
     try {
       const signaturePubKey = await EthereumContractIdentityProvider.web3.eth.personal.sign(data, this.userAddress, '');
-      if (process.env.NODE_ENV === 'development') {
+      if (EthereumContractIdentityProvider.storeAuthDataLocally) {
         storeIdentitySignaturePubKey(data, signaturePubKey)
             .then(() => {
               console.debug(`${LOGGING_PREFIX}Successfully stored current Orbit identity data.`);
@@ -114,6 +114,11 @@ class EthereumContractIdentityProvider extends IdentityProvider {
   // Initialize by supplying a contract's address (to be used as a point of reference)
   static setContractAddress(contractAddress) {
     EthereumContractIdentityProvider.contractAddress = contractAddress;
+  }
+
+  // Opt to store auth data locally to avoid repeating MetaMask signing prompts
+  static setStoreAuthDataLocally(storeAuthDataLocally) {
+    EthereumContractIdentityProvider.storeAuthDataLocally = storeAuthDataLocally;
   }
 
   static splitId(id) {
